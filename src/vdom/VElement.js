@@ -1,4 +1,5 @@
 class VElement {
+  key
   constructor (tagName, attrs = [], children) {
     this.tagName = tagName
     this.attrs = attrs
@@ -8,11 +9,7 @@ class VElement {
   render () {
     const ele = window.document.createElement(this.tagName)
     for (const attrKey in this.attrs) {
-      // 对一些独特的属性名进行一定的转化，如class
-      let attrName = attrKey
-      const attrKayConvert = {};
-      attrName = attrKayConvert[attrName] || attrName;
-      this.setAttr(ele, attrName, this.attrs[attrKey]);
+      this.setAttr(ele, attrKey, this.attrs[attrKey]);
     }
     this.children.map(child => {
       if (child instanceof VElement) {
