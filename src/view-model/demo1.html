@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo1</title>
+</head>
+<body>
+    <div id="box"></div>
+    <input type="text" id="input">
+</body>
+<script>
+    let obj = {};
+    let boxEle = document.querySelector('#box');
+    let inputEle = document.querySelector('#input');
+    Object.defineProperty(obj, 'name', {
+      configurable: true,
+      enumerable: true,
+      get: function(val) {
+        console.log(val)
+        return val;
+      },
+      set: function(newVal) {
+        inputEle.value = newVal;
+        boxEle.innerHTML = newVal;
+      }
+    });
+    inputEle.addEventListener('input', function(e) {
+      obj.name = e.target.value;
+    });
+</script>
+</html>
